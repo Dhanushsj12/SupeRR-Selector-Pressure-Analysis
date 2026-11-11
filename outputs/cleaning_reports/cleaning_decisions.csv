@@ -1,0 +1,7 @@
+dataset,issue,decision,reason
+playing_eleven,11 missing batting orders in match 48512,Preserve original values; save reconstructed order separately,Order inferred from first appearance in ball-by-ball data
+ball_by_ball,1 missing dismissed_player_id for Retire Out,Preserve missing value,Dismissal is recorded as Retire Out
+ball_by_ball,2 missing extras_type with extras runs present,Preserve missing values,Extra classification cannot be reliably inferred
+ball_by_ball,1 legbyes record with zero extras values,Preserve original values,Source inconsistency requires further verification
+matches,"Missing winner IDs for abandoned, no-result or tied matches",Preserve missing values,No winner should be assigned
+playing_eleven,Missing playing details for non-playing players,Preserve missing values,Missing values are associated with is_played=False

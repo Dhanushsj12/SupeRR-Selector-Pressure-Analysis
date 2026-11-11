@@ -1,0 +1,7 @@
+dataset,key_columns,missing_key_rows,duplicate_key_rows
+competitions,comp_id,0,0
+teams,team_id,0,315
+matches,match_id,0,0
+ball_by_ball,"match_id, innings, overid, over_ball_num",0,0
+player_mapping,"comp_id, team_id, player_id",0,0
+playing_eleven,"match_id, team_id, player_id",0,40

@@ -1,0 +1,35 @@
+match_id,comp_id,match_number,match_date,stage,venue_id,venue_country,home_team_id,home_team,away_team_id,away_team,home_team_captain_id,away_team_captain_id,toss_win_team_id,toss_opted,man_of_the_match,first_inn_revised_overs,second_inn_revised_overs,revised_target,knock_out,win_team_id,result
+13612,1345,1,2022-02-11,League,44,Australia,20,Australia,27,Sri Lanka,250.0,2436.0,27.0,Fielding,0,,114.0,143.0,0,20.0,Australia Won by 20 runs (D/L method)
+15410,1439,5,2022-06-19,League,2,India,18,India,19,South Africa,4703.0,1944.0,19.0,Fielding,0,114.0,,,0,,Match Abandoned
+15546,1452,1,2022-07-02,League,84,West Indies,28,West Indies,21,Bangladesh,3125.0,507.0,28.0,Fielding,0,84.0,,,0,,No Result
+16753,1543,4,2022-08-15,League,120,United Kingdom,23,Ireland,78,Afghanistan,3954.0,1107.0,23.0,Fielding,4722,66.0,,,0,78.0,Afghanistan Won by 27 Runs
+16754,1543,5,2022-08-17,League,120,United Kingdom,23,Ireland,78,Afghanistan,3954.0,1107.0,23.0,Fielding,0,,42.0,56.0,0,23.0,Ireland Won by 7 Wickets(D/L Method)
+17395,1584,2,2022-09-23,League,40,India,18,India,20,Australia,126.0,250.0,18.0,Fielding,126,48.0,48.0,91.0,0,18.0,India Won by 6 Wickets
+17765,1611,3,2022-10-14,League,129,Australia,20,Australia,22,England,250.0,,20.0,Fielding,1171,72.0,72.0,130.0,0,,No Result
+21586,1715,74,2023-05-29,Final,49,India,1,Chennai Super Kings,3508,Gujarat Titans,8.0,3330.0,1.0,Fielding,1941,,90.0,171.0,1,1.0,Chennai Super Kings Won by 5 wickets  (DLS method)
+19959,1718,1,2023-03-25,League,22,South Africa,19,South Africa,28,West Indies,3605.0,4986.0,28.0,Fielding,4986,66.0,,,0,28.0,West Indies won by 3 wickets
+21070,1769,1,2023-03-27,League,90,Bangladesh,21,Bangladesh,23,Ireland,499.0,443.0,23.0,Fielding,4372,,48.0,104.0,0,21.0,Bangladesh Won by 22 Runs (DLS method)
+21071,1769,2,2023-03-29,League,90,Bangladesh,21,Bangladesh,23,Ireland,499.0,443.0,23.0,Fielding,499,102.0,102.0,203.0,0,21.0,Bangladesh Won by 77 Runs
+28046,2047,2,2023-12-12,Others,24,South Africa,19,South Africa,18,India,3605.0,1699.0,19.0,Fielding,0,,90.0,152.0,0,19.0,South Africa won by 5 wickets (DLS)
+29984,2062,3,2024-02-25,Others,94,New Zealand,17,New Zealand,20,Australia,4101.0,796.0,17.0,Fielding,3727,,60.0,126.0,0,20.0,Australia Won by 27 Runs (DLS method)
+31707,2350,1,2024-04-18,League,126,Pakistan,25,Pakistan,17,New Zealand,2485.0,6512.0,17.0,Batting,0,30.0,,,0,,No Result
+37354,2387,1,2024-11-14,Others,13,Australia,20,Australia,25,Pakistan,4736.0,3024.0,25.0,Fielding,838,42.0,42.0,94.0,0,20.0,Australia Won by 29 runs
+36098,2453,3,2024-08-28,Others,239,West Indies,28,West Indies,19,South Africa,2687.0,3605.0,28.0,Fielding,6726,78.0,78.0,116.0,0,28.0,West Indies Won by 8 wickets (DLS)
+34428,2542,2,2024-07-28,Others,105,Sri Lanka,27,Sri Lanka,18,India,4895.0,1699.0,18.0,Fielding,7503,,48.0,78.0,0,18.0,India Won by 7 wickets(D/L Method)
+36208,2628,1,2025-09-10,League,64,United Kingdom,22,England,19,South Africa,6280.0,3605.0,22.0,Fielding,8182,54.0,30.0,69.0,0,19.0,South Africa Won by 14 runs(DLS method)
+40727,2725,34,2025-04-18,League,2,India,5,Royal Challengers Bengaluru,4,Punjab Kings,5039.0,3647.0,4.0,Fielding,6396,84.0,84.0,96.0,0,4.0,Punjab Kings Won by 5 wickets
+40749,2725,56,2025-05-06,League,3,India,2,Mumbai Indians,3508,Gujarat Titans,3330.0,6288.0,3508.0,Fielding,6288,,114.0,147.0,0,3508.0,Gujarat Titans Won by 3 wickets (DLS Method)
+39809,2793,2,2025-03-18,League,155,New Zealand,17,New Zealand,25,Pakistan,6512.0,3489.0,17.0,Fielding,3700,90.0,90.0,136.0,0,17.0,New Zealand Won by 5 wickets
+39983,2801,1,2025-02-22,League,59,Zimbabwe,72,Zimbabwe,23,Ireland,2984.0,443.0,23.0,Fielding,0,54.0,,,0,,No Result
+39985,2801,3,2025-02-25,League,59,Zimbabwe,72,Zimbabwe,23,Ireland,2984.0,443.0,23.0,Fielding,0,108.0,,,0,,No Result
+41851,2906,3,2026-02-01,Others,26,South Africa,19,South Africa,28,West Indies,3605.0,4369.0,19.0,Fielding,3276,60.0,60.0,125.0,0,28.0,West Indies Won by 6 runs(DLS Method)
+41975,2915,1,2025-10-29,Others,129,Australia,20,Australia,18,India,818.0,1699.0,20.0,Fielding,0,108.0,,,0,,No Result
+46311,3197,2,2025-10-03,Others,179,New Zealand,20,Australia,17,New Zealand,818.0,6512.0,17.0,Fielding,0,54.0,54.0,,0,,No Result
+46749,3226,3,2025-10-23,Others,94,New Zealand,17,New Zealand,22,England,4101.0,6280.0,22.0,Fielding,0,84.0,,,0,,No Result
+50137,3298,13,2026-04-07,League,1241,India,3,Rajasthan Royals,2,Mumbai Indians,6423.0,3330.0,2.0,Fielding,6819,66.0,66.0,151.0,0,3.0,Rajasthan Royals Won by 27 runs
+50371,3298,50,2026-05-07,League,3272,India,3509,Lucknow Super Giants,5,Royal Challengers Bengaluru,4703.0,5039.0,5.0,Fielding,818,114.0,114.0,213.0,0,3509.0,Lucknow Super Giants Won by 9 runs (DLS method)
+48610,3334,1,2026-01-30,Others,105,Sri Lanka,27,Sri Lanka,22,England,2436.0,6280.0,22.0,Fielding,479,102.0,90.0,115.0,0,22.0,England Won by 11 runs (DLS method)
+48611,3334,2,2026-02-01,Others,105,Sri Lanka,27,Sri Lanka,22,England,2436.0,6280.0,22.0,Fielding,6273,,102.0,168.0,0,22.0,England Won by 6 wickets(DLS Method)
+50190,3433,3,2026-05-02,Others,118,Bangladesh,21,Bangladesh,17,New Zealand,2671.0,4695.0,17.0,Fielding,49027,90.0,90.0,103.0,0,17.0,New Zealand Won by 6 wickets (DLS Method)
+50408,3450,5,2026-10-17,Others,2,India,18,India,28,West Indies,3647.0,4369.0,28.0,Fielding,0,54.0,54.0,,0,,No Result
+54711,3739,1,2026-09-22,Others,3333,Japan,3886,Japan,18,India,34928.0,3647.0,18.0,Batting,3647,30.0,30.0,33.0,0,18.0,India Won by 2 runs
