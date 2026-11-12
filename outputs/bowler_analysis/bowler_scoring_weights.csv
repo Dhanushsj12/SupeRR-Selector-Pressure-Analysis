@@ -1,0 +1,7 @@
+metric,weight_percentage,preferred_direction
+High-pressure economy rate,30,Lower
+High-pressure wicket rate,25,Higher
+High-pressure dot-ball percentage,15,Higher
+High-pressure boundary percentage,10,Lower
+Economy improvement,10,Higher
+Wicket-rate improvement,10,Higher
