@@ -1,0 +1,5 @@
+definition,share_of_balls_pct,swing_per_flagged_ball_pts,share_of_all_swing_pct,persistence_bat,top10_overlap_bat,persistence_bowl,top10_overlap_bowl
+Leverage (ours),19.97,2.95,42.62,0.2,6,0.15,10
+Rule score >= 50 (notebooks 04-06),28.32,1.59,32.52,0.19,4,0.06,6
+Death overs only (17-20),17.17,1.86,23.13,0.32,3,0.13,4
+Random 20% of balls,20.15,1.38,20.17,0.1,6,0.17,5

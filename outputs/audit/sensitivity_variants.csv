@@ -1,0 +1,9 @@
+role,variant,eligible,top10_overlap_with_main,rank_corr_with_main,top10
+bat,legal deliveries only (wides/no-balls removed),91,10,0.99,"Suryakumar Yadav, Abhishek Sharma, Phil Salt, Heinrich Klaasen, Tim David, Vaibhav Sooryavanshi, Mitchell Marsh, Travis Head, Reeza Hendricks, Namboori Tilak Varma"
+bat,pressure = top 20% within each innings,122,6,0.91,"Suryakumar Yadav, Vaibhav Sooryavanshi, Abhishek Sharma, Phil Salt, Heinrich Klaasen, Tim David, Finn Allen, Romario Shepherd, Rajat Patidar, Andre Russell"
+bat,"first-innings pressure only (innings-specific top 20%, relaxed eligibility)",119,5,0.51,"Suryakumar Yadav, Parvez Emon, Rajat Patidar, Vaibhav Sooryavanshi, Andre Russell, Tim David, Heinrich Klaasen, Mitchell Marsh, Kyle Mayers, Shashank Singh"
+bat,second-innings pressure only,90,10,0.98,"Suryakumar Yadav, Abhishek Sharma, Phil Salt, Tim David, Heinrich Klaasen, Vaibhav Sooryavanshi, Mitchell Marsh, Travis Head, Reeza Hendricks, Namboori Tilak Varma"
+bowl,legal deliveries only (wides/no-balls removed),96,8,0.97,"Sunil Narine, Rashid Khan, Jasprit Bumrah, Kuldeep Yadav, Matheesha Pathirana, Bhuvneshwar Kumar, Patrick Cummins, Axar Patel, Krunal Pandya, Mitchell Santner"
+bowl,pressure = top 20% within each innings,149,7,0.83,"Rashid Khan, Sunil Narine, Kuldeep Yadav, Krunal Pandya, Wanindu Hasaranga, Mujeeb Ur Rahman, Josh Hazlewood, Varun Chakravarthy, Jasprit Bumrah, Axar Patel"
+bowl,"first-innings pressure only (innings-specific top 20%, relaxed eligibility)",150,4,0.47,"Sunil Narine, Hrithik Shokeen, Anukul Roy, Mujeeb Ur Rahman, Jasprit Bumrah, David Willey, Kuldeep Yadav, Tim Southee, Matt Henry, Rashid Khan"
+bowl,second-innings pressure only,90,9,0.97,"Sunil Narine, Rashid Khan, Patrick Cummins, Kuldeep Yadav, Axar Patel, Bhuvneshwar Kumar, Krunal Pandya, Mitchell Santner, Jasprit Bumrah, Nathan Ellis"
