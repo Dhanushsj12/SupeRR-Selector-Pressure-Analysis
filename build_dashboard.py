@@ -940,6 +940,7 @@ def create_dashboard_html():
             <button class="nav-btn" onclick="switchTab('h2h')">⚔️ Head-to-Head</button>
             <button class="nav-btn" onclick="switchTab('simulator')">⚡ Match Sandbox</button>
             <button class="nav-btn" onclick="switchTab('audit')">📊 Audit & Proof</button>
+            <button class="nav-btn" onclick="switchTab('auction')">🔨 2027 Auction Plan</button>
         </div>
     </header>
 
@@ -1322,6 +1323,36 @@ def create_dashboard_html():
             </div>
         </section>
 
+        <!-- TAB 6: IPL 2027 AUCTION PLANNER -->
+        <section id="tab-auction" class="tab-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <h3>Rajasthan Royals · IPL 2027 Auction Plan</h3>
+                    <p>Role-based targets and bid guidance from your scouting notes. This is an analysis shortlist, not RR's confirmed shortlist.</p>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.8rem;margin-bottom:1.1rem">
+                <div class="scout-column"><div style="font-size:.72rem;color:#94A3B8">AUCTION</div><strong id="auction-date" style="font-size:1.05rem;color:#FFF"></strong><div id="auction-venue" style="font-size:.78rem;color:#94A3B8"></div></div>
+                <div class="scout-column"><div style="font-size:.72rem;color:#94A3B8">RR PURSE</div><strong id="auction-purse" style="font-size:1.35rem;color:#FFD700"></strong><div style="font-size:.78rem;color:#94A3B8">reported remaining purse</div></div>
+                <div class="scout-column"><div style="font-size:.72rem;color:#94A3B8">OPEN SLOTS</div><strong id="auction-slots" style="font-size:1.35rem;color:#FFF"></strong><div id="auction-overseas" style="font-size:.78rem;color:#94A3B8"></div></div>
+                <div class="scout-column"><div style="font-size:.72rem;color:#94A3B8">POOL STATUS</div><strong style="font-size:1rem;color:#FCD34D">Not final</strong><div style="font-size:.78rem;color:#94A3B8">Registration and list dates below</div></div>
+            </div>
+            <div style="padding:.85rem 1rem;margin-bottom:1rem;border:1px solid rgba(245,158,11,.35);border-radius:10px;background:rgba(245,158,11,.08);font-size:.82rem;color:#CBD5E1;line-height:1.5">
+                <strong style="color:#FCD34D">Use this as a target board:</strong> Released players are not guaranteed to register or appear in the final auction pool. Players marked conditional or unconfirmed need checking against the final player list. Final sets are due <strong>December 3</strong>; player registration closes <strong>November 23</strong>.
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead><tr><th>Role</th><th>Player</th><th>Availability</th><th>Recommendation</th><th>Budget guide</th><th>Why / risk</th></tr></thead>
+                    <tbody id="auction-plan-body"></tbody>
+                </table>
+            </div>
+            <div style="margin-top:1rem;font-size:.75rem;color:#94A3B8;line-height:1.6">
+                <p>Price bands are scouting ceilings from your analysis, not auction estimates or verified player base prices. Validate pressure performance using overs 16–20 strike rate and dot-ball rate for finishers; death economy and yorker accuracy for bowlers; and knockout / chase records across roles.</p>
+                <p style="margin-top:.45rem">Status sources: <a href="https://www.iplt20.com/news/article/tata-ipl-2027-player-retentions-announced" target="_blank" rel="noopener" style="color:#93C5FD">IPL 2027 retentions and auction date</a> · <a href="https://www.iplt20.com/cms/files/jot2qw8s50z1/3gFAJ4z1USxcXYhaZVl65L/2a463a9c02a5bb7fd12fa3fbe91cc299/TATA_IPL_2027-_Release_Player_List.pdf" target="_blank" rel="noopener" style="color:#93C5FD">Official released-player list</a> · <a href="https://www.moneycontrol.com/news/cricket/ipl/ipl-2027-bcci-extends-deadline-for-franchises-to-submit-player-retention-list-check-new-date-14066701.html" target="_blank" rel="noopener" style="color:#93C5FD">Registration and final-list dates</a> · <a href="https://www.cricbuzz.com/cricket-news/140945/kkr-release-pathirana-but-retain-cameron-green" target="_blank" rel="noopener" style="color:#93C5FD">Purse and slot snapshot</a></p>
+                <p style="margin-top:.3rem">Availability checked November 18, 2026. Auction entry can change until registration closes; re-check the final list before setting bids.</p>
+            </div>
+        </section>
+
     </main>
 
     <!-- Player Inspection Modal -->
@@ -1344,6 +1375,7 @@ def create_dashboard_html():
             renderLeaderboard();
             populateExplorer();
             renderRRSquad();
+            renderAuctionPlan();
             initH2H();
             runSimCalc();
         }});
@@ -1354,7 +1386,7 @@ def create_dashboard_html():
             
             document.getElementById("tab-" + tabId).classList.add("active");
             const btns = document.querySelectorAll(".nav-btn");
-            const tabOrder = ["leaderboard", "explorer", "h2h", "simulator", "audit"];
+            const tabOrder = ["leaderboard", "explorer", "h2h", "simulator", "audit", "auction"];
             const idx = tabOrder.indexOf(tabId);
             if (idx >= 0 && btns[idx]) btns[idx].classList.add("active");
 
@@ -1382,6 +1414,28 @@ def create_dashboard_html():
                 </article>`).join("");
             document.getElementById("rr-released-list").textContent = (APP_DATA.rr_released_players || []).join(", ") || "None listed";
             document.getElementById("rr-moved-list").textContent = (APP_DATA.rr_moved_players || []).map(p => `${{p.name}} — ${{p.status}}`).join(", ") || "None listed";
+        }}
+
+        function renderAuctionPlan() {{
+            const snapshot = APP_DATA.auction_snapshot || {{}};
+            document.getElementById("auction-date").textContent = snapshot.auction_date || "TBA";
+            document.getElementById("auction-venue").textContent = snapshot.venue || "Venue TBA";
+            document.getElementById("auction-purse").textContent = `₹${{Number(snapshot.rr_purse_crore || 0).toFixed(2)}} Cr`;
+            document.getElementById("auction-slots").textContent = snapshot.rr_slots ?? "–";
+            document.getElementById("auction-overseas").textContent = `${{snapshot.rr_overseas_slots ?? "–"}} overseas slots available`;
+            const body = document.getElementById("auction-plan-body");
+            if (!body) return;
+            const tone = value => /unavailable|avoid|not recommended/i.test(value) ? "#FCA5A5" :
+                /conditional|unconfirmed|low priority/i.test(value) ? "#FCD34D" : "#86EFAC";
+            body.innerHTML = (APP_DATA.auction_plan || []).map(p => `
+                <tr>
+                    <td>${{p.role}}</td>
+                    <td><strong>${{p.player}}</strong></td>
+                    <td style="max-width:210px;color:${{tone(p.availability)}}">${{p.availability}}</td>
+                    <td><span style="font-weight:800;color:${{tone(p.decision)}}">${{p.decision}}</span></td>
+                    <td style="white-space:nowrap;color:#FCD34D">${{p.budget}}</td>
+                    <td style="min-width:260px;white-space:normal;color:#CBD5E1">${{p.note}}</td>
+                </tr>`).join("");
         }}
 
         // Generate SVG Avatar fallback

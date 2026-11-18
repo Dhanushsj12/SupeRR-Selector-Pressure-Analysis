@@ -313,6 +313,36 @@ RR_MOVED_PLAYERS = [
     {"name":"Manimaran Siddharth", "status":"Traded in from Lucknow Super Giants"},
 ]
 
+# User-authored auction recommendations, with public retention/release state
+# kept separate from the scouting opinion. Prices are role budgets, not bids.
+AUCTION_PLAN = [
+    {"role":"Overseas finisher", "player":"Shimron Hetmyer", "availability":"Released by RR; auction registration unconfirmed", "decision":"Top target", "budget":"₹8–10 Cr role budget", "note":"Best role fit to replace the 16–20 over finisher. Re-buy only at a sensible price; do not chase his former ₹11 Cr fee."},
+    {"role":"Overseas finisher", "player":"Mitchell Owen", "availability":"Released by PBKS; registration unconfirmed", "decision":"Alternative", "budget":"Within finisher budget", "note":"Younger power-hitting alternative who can add a few overs; less IPL pressure experience than Hetmyer."},
+    {"role":"Overseas pace all-rounder", "player":"Ben Stokes", "availability":"Auction entry unconfirmed", "decision":"Conditional target", "budget":"₹8–10 Cr role budget", "note":"Only if he registers and passes fitness checks; proven big-match option and prior RR experience."},
+    {"role":"Overseas pace all-rounder", "player":"Gerald Coetzee", "availability":"Released by SRH; registration unconfirmed", "decision":"Fallback target", "budget":"Price TBD", "note":"Your lower-cost pace option if Stokes is unavailable; verify all-round role and fitness before bidding."},
+    {"role":"Overseas pace all-rounder", "player":"Keemo Paul", "availability":"Auction entry unconfirmed", "decision":"Value target", "budget":"Keep below premium tier", "note":"Your pace-bowling all-rounder fallback; recent series sample is small, so use a strict ceiling."},
+    {"role":"Overseas pace all-rounder", "player":"Jacob Bethell", "availability":"Reported to be skipping IPL 2027", "decision":"Unavailable", "budget":"Do not bid", "note":"Removed from the target list based on the reported decision not to enter this auction."},
+    {"role":"Overseas death bowler", "player":"Mustafizur Rahman", "availability":"Released by KKR; registration unconfirmed", "decision":"Target", "budget":"₹3–6 Cr role budget", "note":"Left-arm cutters and slower balls add a different death-over option beside Archer and Shami."},
+    {"role":"Overseas death bowler", "player":"Matheesha Pathirana", "availability":"Released by KKR; registration unconfirmed", "decision":"Avoid at premium price", "budget":"Below prior ₹18 Cr fee", "note":"Elite yorker skill, but injury/availability risk and his previous fee make him a poor fit for this purse."},
+    {"role":"Indian death pace", "player":"Avesh Khan", "availability":"Released by LSG; registration unconfirmed", "decision":"Target for depth", "budget":"₹0.3–3 Cr depth range", "note":"Indian seam cover for the death overs; assess recent yorker execution before bidding."},
+    {"role":"Indian seam depth", "player":"Deepak Chahar", "availability":"Released by MI; registration unconfirmed", "decision":"Target for depth", "budget":"₹0.3–3 Cr depth range", "note":"New-ball swing gives the attack a different option; check fitness and death-over fit."},
+    {"role":"Indian seam depth", "player":"Akash Deep", "availability":"Released by KKR; registration unconfirmed", "decision":"Target for depth", "budget":"₹0.3–3 Cr depth range", "note":"Indian pace backup; review hard-length and late-over records before bidding."},
+    {"role":"Indian middle order", "player":"Nitish Rana", "availability":"Released by DC; registration unconfirmed", "decision":"Depth target", "budget":"Low-cost depth", "note":"Experienced middle-order cover behind Jurel and Parag."},
+    {"role":"Indian middle order", "player":"Karun Nair", "availability":"Released by DC; registration unconfirmed", "decision":"Depth target", "budget":"Low-cost depth", "note":"Experienced Indian batting cover; keep the price low for a reserve role."},
+    {"role":"Overseas all-rounder", "player":"Shamar Springer", "availability":"Auction entry unconfirmed", "decision":"Value option", "budget":"Low-cost overseas slot", "note":"Late-order hitting plus overs could cover two needs; T20I sample and IPL experience are limited."},
+    {"role":"Overseas wicketkeeper", "player":"Shai Hope", "availability":"Auction entry unconfirmed", "decision":"Low priority", "budget":"Only at value price", "note":"Strong recent T20I batting, but overlaps RR's top order and keeper cover; not a priority use of an overseas slot."},
+    {"role":"Overseas batting", "player":"Rachin Ravindra", "availability":"Released by KKR; registration unconfirmed", "decision":"Low priority", "budget":"Only at value price", "note":"Quality left-hand bat and spin option, but overlaps the top order and existing spin resources."},
+    {"role":"Overseas pace", "player":"Anrich Nortje", "availability":"Released by LSG; registration unconfirmed", "decision":"Low priority", "budget":"Only if pace cover needed", "note":"Another overseas quick duplicates RR's Archer, Shami, Burger and Sandeep options."},
+    {"role":"Overseas wicketkeeper", "player":"Matthew Breetzke", "availability":"Released by LSG; registration unconfirmed", "decision":"Low priority", "budget":"Only at value price", "note":"Top-order role overlaps Jaiswal, Sooryavanshi and Pretorius."},
+    {"role":"Overseas swing bowler", "player":"Trent Boult", "availability":"Released by MI; registration unconfirmed", "decision":"Not recommended", "budget":"Do not spend premium", "note":"New-ball role overlaps RR's current pace group; recent IPL 2026 return was modest."},
+    {"role":"Overseas spinner", "player":"Wanindu Hasaranga", "availability":"Released by LSG; registration unconfirmed", "decision":"Not recommended", "budget":"Do not prioritize", "note":"Jadeja, Bishnoi and Siddharth already cover spin; availability/fitness is also a concern."},
+    {"role":"Overseas spin all-rounder", "player":"Michael Bracewell", "availability":"Auction entry unconfirmed", "decision":"Backup option", "budget":"Value price only", "note":"Off-spin adds variety to the spin group and gives middle-order cover, but does not solve the finisher gap."},
+    {"role":"Overseas finisher", "player":"Glenn Phillips", "availability":"Retained by GT", "decision":"Unavailable", "budget":"Do not bid", "note":"Retained; not part of the auction pool."},
+    {"role":"Overseas all-rounder", "player":"Jason Holder", "availability":"Retained by GT", "decision":"Unavailable", "budget":"Do not bid", "note":"Retained; not part of the auction pool."},
+    {"role":"Overseas batter", "player":"Aiden Markram", "availability":"Retained by LSG", "decision":"Unavailable", "budget":"Do not bid", "note":"Retained; not part of the auction pool."},
+    {"role":"Overseas pace", "player":"Lungi Ngidi", "availability":"Retained by DC", "decision":"Unavailable", "budget":"Do not bid", "note":"Retained; not part of the auction pool."},
+]
+
 # Current team tags and fresh portrait URLs for the requested players.
 PLAYER_PROFILE_META["Phil Salt"].update({"team":"RCB", "img":"https://img1.hscicdn.com/image/upload/f_auto%2Ct_ds_square_w_640%2Cq_50/lsci/db/PICTURES/CMS/383100/383141.png", "backup_img":"https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/643907.png"})
 PLAYER_PROFILE_META["Tim David"].update({"team":"RCB", "img":"https://static-files.cricket-australia.pulselive.com/headshots/440/3619-camedia.png", "backup_img":"https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/892749.png"})
@@ -478,6 +508,17 @@ def build_dashboard_data():
         ],
         "rr_released_players": RR_RELEASED_PLAYERS,
         "rr_moved_players": RR_MOVED_PLAYERS,
+        "auction_plan": AUCTION_PLAN,
+        "auction_snapshot": {
+            "auction_date": "December 16, 2026",
+            "venue": "ITC Grand Goa",
+            "player_registration_closes": "November 23, 2026",
+            "final_player_list_date": "December 3, 2026",
+            "rr_purse_crore": 27.05,
+            "rr_slots": 6,
+            "rr_overseas_slots": 3,
+            "as_of": "November 18, 2026",
+        },
         "pressure_definitions": defs_comp,
         "buildup_pressure": buildup,
         "matched_head_to_head": matched_h2h,
