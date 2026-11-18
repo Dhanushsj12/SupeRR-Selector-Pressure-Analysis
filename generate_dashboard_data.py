@@ -47,8 +47,8 @@ PLAYER_PROFILE_META = {
         "jersey": "8",
         "rating": 94,
         "title": "DEATH-OVER FINISHER",
-        "img": "https://documents.iplt20.com/ipl/IPLHeadshot2026/1483.png",
-        "backup_img": "https://wisden.com/static-assets/images/players/67402.png?v=23.77"
+        "img": "https://www.royalchallengers.com/PRRCB01/public/2026-03/2%20%2823%29_0.png",
+        "backup_img": "https://www.wisden.com/static-assets/images/players/67402.png?v=23.77"
     },
     "Heinrich Klaasen": {
         "short_name": "KLAAS",
@@ -225,8 +225,8 @@ PLAYER_PROFILE_META = {
         "jersey": "24",
         "rating": 90,
         "title": "TACTICAL TIGHT-LINE SPECIALIST",
-        "img": "https://documents.iplt20.com/ipl/IPLHeadshot2026/1701.png",
-        "backup_img": "https://www.royalchallengers.com/PRRCB01/public/2026-03/2%20%2815%29.png"
+        "img": "https://www.royalchallengers.com/PRRCB01/public/2026-03/2%20%2815%29.png",
+        "backup_img": "https://www.wisden.com/static-assets/images/players/63788.png?v=23.65"
     },
     "Nathan Ellis": {
         "short_name": "ELLIS",
