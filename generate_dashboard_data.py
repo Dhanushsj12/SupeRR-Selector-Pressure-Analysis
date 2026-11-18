@@ -15,7 +15,7 @@ PLAYER_PROFILE_META = {
         "rating": 98,
         "title": "360° MR. CLUTCH",
         "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/174.png",
-        "backup_img": "https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/388900/388941.1.png"
+        "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/446507.png"
     },
     "Abhishek Sharma": {
         "short_name": "ABHI",
@@ -25,8 +25,8 @@ PLAYER_PROFILE_META = {
         "jersey": "4",
         "rating": 97,
         "title": "FEARLESS POWER STRIKER",
-        "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/1113.png",
-        "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/1070183.png"
+        "img": "/assets/players/abhishek-sharma.jpg",
+        "backup_img": "https://documents.iplt20.com/ipl/IPLHeadshot2026/212.png"
     },
     "Phil Salt": {
         "short_name": "SALT",
@@ -36,8 +36,8 @@ PLAYER_PROFILE_META = {
         "jersey": "28",
         "rating": 95,
         "title": "HIGH-LEVERAGE BLITZER",
-        "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/1187.png",
-        "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/643907.png"
+        "img": "https://documents.iplt20.com/ipl/IPLHeadshot2025/1220.png",
+        "backup_img": "https://documents.iplt20.com/ipl/IPLHeadshot2026/1220.png"
     },
     "Tim David": {
         "short_name": "DAVID",
@@ -47,8 +47,8 @@ PLAYER_PROFILE_META = {
         "jersey": "8",
         "rating": 94,
         "title": "DEATH-OVER FINISHER",
-        "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/4524.png",
-        "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/892749.png"
+        "img": "https://documents.iplt20.com/ipl/IPLHeadshot2026/1483.png",
+        "backup_img": "https://wisden.com/static-assets/images/players/67402.png?v=23.77"
     },
     "Heinrich Klaasen": {
         "short_name": "KLAAS",
@@ -69,8 +69,8 @@ PLAYER_PROFILE_META = {
         "jersey": "13",
         "rating": 93,
         "title": "14-YR PHENOM DISRUPTOR",
-        "img": "https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/388900/388941.1.png",
-        "backup_img": "https://images.firstpost.com/uploads/2024/11/Vaibhav-Suryavanshi-2024-11-209a80b852932c0d024626156e7dfbf3.jpg"
+        "img": "https://documents.iplt20.com/ipl/IPLHeadshot2026/3498.png",
+        "backup_img": "https://ipl-stats-sports-mechanic.s3.ap-south-1.amazonaws.com/ipl/playerimages/Vaibhav%20Suryavanshi.png"
     },
     "Mitchell Marsh": {
         "short_name": "MARSH",
@@ -80,8 +80,8 @@ PLAYER_PROFILE_META = {
         "jersey": "8",
         "rating": 92,
         "title": "PRESSURE POWER ANCHOR",
-        "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/40.png",
-        "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/272450.png"
+        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Mitchell_Marsh.jpg/500px-Mitchell_Marsh.jpg",
+        "backup_img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/40.png"
     },
     "Travis Head": {
         "short_name": "HEAD",
@@ -91,8 +91,8 @@ PLAYER_PROFILE_META = {
         "jersey": "62",
         "rating": 91,
         "title": "POWERPLAY ASSAILANT",
-        "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/1020.png",
-        "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/530011.png"
+        "img": "https://documents.iplt20.com/ipl/IPLHeadshot2026/37.png",
+        "backup_img": "https://documents.iplt20.com/ipl/IPLHeadshot2025/37.png"
     },
     "Namboori Tilak Varma": {
         "short_name": "TILAK",
@@ -102,8 +102,8 @@ PLAYER_PROFILE_META = {
         "jersey": "9",
         "rating": 90,
         "title": "CALCULATED RESCUE ENGINE",
-        "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/993.png",
-        "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/1170265.png"
+        "img": "/assets/players/tilak-varma.png",
+        "backup_img": "https://www.mumbaiindians.com/static-assets/images/players/large/70761.png?v=2.13&w=400"
     },
     "Reeza Hendricks": {
         "short_name": "HENDR",
@@ -113,7 +113,7 @@ PLAYER_PROFILE_META = {
         "jersey": "17",
         "rating": 89,
         "title": "TARGET CHASE SPEARHEAD",
-        "img": "https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/319700/319746.png",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/REEZA_HENDRICKS_%2815519916117%29.jpg/500px-REEZA_HENDRICKS_%2815519916117%29.jpg",
         "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/269280.png"
     },
     "Virat Kohli": {
@@ -226,7 +226,7 @@ PLAYER_PROFILE_META = {
         "rating": 90,
         "title": "TACTICAL TIGHT-LINE SPECIALIST",
         "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/17.png",
-        "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/471342.png"
+        "backup_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Krunal_Pandya_and_Hardik_Pandya_%28cropped%29.jpg/500px-Krunal_Pandya_and_Hardik_Pandya_%28cropped%29.jpg"
     },
     "Nathan Ellis": {
         "short_name": "ELLIS",
@@ -259,7 +259,7 @@ PLAYER_PROFILE_META = {
         "rating": 89,
         "title": "VETERAN SWING & DEATH EXEC",
         "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/15.png",
-        "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/326016.png"
+        "backup_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Bhuvneshwar_Kumar.jpg/500px-Bhuvneshwar_Kumar.jpg"
     },
     "Wanindu Hasaranga": {
         "short_name": "HASAR",
@@ -347,18 +347,6 @@ AUCTION_PLAN = [
     {"role":"Overseas pace", "player":"Lungi Ngidi", "availability":"Retained by DC", "decision":"Unavailable", "budget":"Do not bid", "note":"Retained; not part of the auction pool."},
 ]
 
-# Current team tags and fresh portrait URLs for the requested players.
-PLAYER_PROFILE_META["Phil Salt"].update({"team":"RCB", "img":"https://img1.hscicdn.com/image/upload/f_auto%2Ct_ds_square_w_640%2Cq_50/lsci/db/PICTURES/CMS/383100/383141.png", "backup_img":"https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/643907.png"})
-PLAYER_PROFILE_META["Tim David"].update({"team":"RCB", "img":"https://static-files.cricket-australia.pulselive.com/headshots/440/3619-camedia.png", "backup_img":"https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/892749.png"})
-PLAYER_PROFILE_META["Mitchell Marsh"].update({"team":"LSG", "img":"https://images.icc-cricket.com/image/upload/t_player-headshot-portrait-lg-webp/prd/assets/players/13203/10094.png", "backup_img":"https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/272450.png"})
-PLAYER_PROFILE_META["Vaibhav Sooryavanshi"].update({"img":"https://documents.iplt20.com/ipl/IPLHeadshot2026/3498.png", "backup_img":"https://static.toiimg.com/photo/120728679.cms"})
-PLAYER_PROFILE_META["Abhishek Sharma"].update({"img":"/assets/players/abhishek-sharma.jpg", "backup_img":"https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/1070183.png"})
-PLAYER_PROFILE_META["Namboori Tilak Varma"].update({"img":"/assets/players/tilak-varma.png", "backup_img":"https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/1170265.png"})
-PLAYER_PROFILE_META["Reeza Hendricks"].update({"img":"https://static-files.cricket-australia.pulselive.com/headshots/440/669-camedia.png", "backup_img":"https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/269280.png"})
-PLAYER_PROFILE_META["Nathan Ellis"].update({"img":"https://www.wisden.com/static-assets/images/players/70324.png?v=23.35", "backup_img":"https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/825075.png"})
-PLAYER_PROFILE_META["Krunal Pandya"].update({"team":"RCB", "img":"https://www.wisden.com/static-assets/images/players/63788.png?v=23.65", "backup_img":"https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/471342.png"})
-PLAYER_PROFILE_META["Bhuvneshwar Kumar"].update({"team":"RCB", "img":"https://www.iplt20.com/_next/image?q=75&url=%2Fapi%2Fteam-assets%3Fpathname%3Dplayer%252F8903%252F2138%252F12690.png%26brand%3Dipl&w=750", "backup_img":"https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/326016.png"})
-PLAYER_PROFILE_META["Kuldeep Yadav"].update({"team":"LSG", "img":"https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/559241.png", "backup_img":"https://documents.iplt20.com/ipl/IPLHeadshot2024/14.png"})
 
 def build_dashboard_data():
     base_dir = os.path.dirname(os.path.abspath(__file__))
