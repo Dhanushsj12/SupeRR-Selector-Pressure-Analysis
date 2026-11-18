@@ -306,6 +306,10 @@ RR_RETAINED_PLAYERS = [
     ("Sushant Mishra", "https://www.rajasthanroyals.com/static-assets/images/players/71380.png?v=7.44"),
     ("Yash Punja", "https://documents.iplt20.com/ipl/IPLHeadshot2026/4553.png"),
 ]
+RR_TRADE_IN_PLAYERS = [
+    {"name":"Mohammed Shami", "team":"RR", "status":"Traded in", "captain":False, "img":"/assets/players/mohammed-shami.png"},
+    {"name":"Manimaran Siddharth", "team":"RR", "status":"Traded in", "captain":False, "img":"/assets/players/manimaran-siddharth.jpg"},
+]
 RR_RELEASED_PLAYERS = ["Tushar Deshpande", "Adam Milne", "Kuldeep Sen", "Yudhvir Singh Charak", "Kwena Maphaka", "Vignesh Puthur", "Shimron Hetmyer", "Ravi Singh", "Emanjot Singh Chahal"]
 RR_MOVED_PLAYERS = [
     {"name":"Sam Curran", "status":"Traded to Lucknow Super Giants"},
@@ -506,6 +510,7 @@ def build_dashboard_data():
             {"name": name, "team":"RR", "status":"Retained", "captain": name == "Riyan Parag", "img": image}
             for name, image in RR_RETAINED_PLAYERS
         ],
+        "rr_trade_in_players": RR_TRADE_IN_PLAYERS,
         "rr_released_players": RR_RELEASED_PLAYERS,
         "rr_moved_players": RR_MOVED_PLAYERS,
         "auction_plan": AUCTION_PLAN,

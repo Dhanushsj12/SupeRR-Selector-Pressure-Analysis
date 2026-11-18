@@ -1023,8 +1023,8 @@
             </div>
 
             <div style="margin-top:1.5rem;padding:1.15rem;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:14px;">
-                <h3 style="font-size:1.05rem;margin-bottom:.35rem;">Rajasthan Royals retained players</h3>
-                <p style="font-size:.82rem;color:#94A3B8;margin-bottom:.9rem;">The 17 retained players you specified. Riyan Parag is captain. Each player has a portrait; if an image host is unavailable, the card shows a clean initials avatar.</p>
+                <h3 style="font-size:1.05rem;margin-bottom:.35rem;">Rajasthan Royals squad</h3>
+                <p style="font-size:.82rem;color:#94A3B8;margin-bottom:.9rem;">17 retained players plus Mohammed Shami and Manimaran Siddharth, marked separately as traded in. Riyan Parag is captain. Portraits are bundled with the dashboard and use initials avatars if an image fails.</p>
                 <div id="rr-retained-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:.75rem;"></div>
                 <div style="margin-top:1rem;padding-top:.8rem;border-top:1px solid rgba(255,255,255,.1);font-size:.78rem;color:#CBD5E1;">
                     <strong style="color:#FCA5A5">Released:</strong> <span id="rr-released-list"></span>
@@ -9659,6 +9659,22 @@
       "img": "https://documents.iplt20.com/ipl/IPLHeadshot2026/4553.png"
     }
   ],
+  "rr_trade_in_players": [
+    {
+      "name": "Mohammed Shami",
+      "team": "RR",
+      "status": "Traded in",
+      "captain": false,
+      "img": "/assets/players/mohammed-shami.png"
+    },
+    {
+      "name": "Manimaran Siddharth",
+      "team": "RR",
+      "status": "Traded in",
+      "captain": false,
+      "img": "/assets/players/manimaran-siddharth.jpg"
+    }
+  ],
   "rr_released_players": [
     "Tushar Deshpande",
     "Adam Milne",
@@ -10318,12 +10334,13 @@
         function renderRRSquad() {
             const grid = document.getElementById("rr-retained-grid");
             if (!grid) return;
-            const players = APP_DATA.rr_retained_players || [];
+            const players = (APP_DATA.rr_retained_players || []).map(p => ({ ...p, badge: p.captain ? "CAPTAIN · RETAINED" : "RETAINED" }))
+                .concat((APP_DATA.rr_trade_in_players || []).map(p => ({ ...p, badge: "TRADED IN" })));
             grid.innerHTML = players.map((p, i) => `
                 <article style="min-width:0;padding:.75rem;background:rgba(0,15,38,.55);border:1px solid rgba(255,255,255,.09);border-radius:12px;text-align:center">
                     <img src="${p.img}" alt="${p.name}" loading="lazy" style="width:100%;height:126px;object-fit:contain;object-position:center bottom;border-radius:8px;background:radial-gradient(circle at 50% 35%,rgba(228,28,106,.22),transparent 70%)" onerror="this.onerror=null;this.src=getSvgAvatar('${p.name}','RR','')">
                     <div style="font-weight:800;font-size:.85rem;margin-top:.55rem">${p.name}</div>
-                    <div style="font-size:.67rem;color:#94A3B8;margin-top:.2rem">${p.captain ? 'CAPTAIN · RETAINED' : 'RETAINED'}</div>
+                    <div style="font-size:.67rem;color:${p.badge === 'TRADED IN' ? '#FCD34D' : '#94A3B8'};margin-top:.2rem">${p.badge}</div>
                 </article>`).join("");
             document.getElementById("rr-released-list").textContent = (APP_DATA.rr_released_players || []).join(", ") || "None listed";
             document.getElementById("rr-moved-list").textContent = (APP_DATA.rr_moved_players || []).map(p => `${p.name} — ${p.status}`).join(", ") || "None listed";

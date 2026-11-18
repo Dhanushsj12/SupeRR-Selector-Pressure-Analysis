@@ -8301,6 +8301,22 @@
       "img": "https://documents.iplt20.com/ipl/IPLHeadshot2026/4553.png"
     }
   ],
+  "rr_trade_in_players": [
+    {
+      "name": "Mohammed Shami",
+      "team": "RR",
+      "status": "Traded in",
+      "captain": false,
+      "img": "/assets/players/mohammed-shami.png"
+    },
+    {
+      "name": "Manimaran Siddharth",
+      "team": "RR",
+      "status": "Traded in",
+      "captain": false,
+      "img": "/assets/players/manimaran-siddharth.jpg"
+    }
+  ],
   "rr_released_players": [
     "Tushar Deshpande",
     "Adam Milne",
