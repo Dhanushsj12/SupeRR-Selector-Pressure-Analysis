@@ -3,7 +3,7 @@
 **Author:** Dhanush S. J. (VIT Vellore)  
 **Competition:** Rajasthan Royals – SupeRR Selector Season 2 (Round 1)  
 **Dataset:** Supplied IPL + T20I ball-by-ball records, **2022–2026** (775 clean matches, 185,400 deliveries)
-
+**Dashboard:** https://supe-rr-selector-pressure-analysis.vercel.app/
 ---
 
 ## 🌟 Executive Summary: Why This Approach Stands Apart
