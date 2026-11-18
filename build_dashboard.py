@@ -1,5 +1,6 @@
 import json
 import os
+import shutil
 
 def create_dashboard_html():
     base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -1966,6 +1967,14 @@ def create_dashboard_html():
         f.write(html_content)
     with open(os.path.join(base_dir, "index.html"), "w", encoding="utf-8") as f:
         f.write(html_content)
+    # Keep a compact static output directory for Vercel. Only the standalone
+    # dashboard and its local player assets are published from this folder.
+    public_dir = os.path.join(base_dir, "public")
+    os.makedirs(public_dir, exist_ok=True)
+    shutil.copyfile(os.path.join(base_dir, "index.html"), os.path.join(public_dir, "index.html"))
+    assets_dir = os.path.join(base_dir, "assets")
+    if os.path.isdir(assets_dir):
+        shutil.copytree(assets_dir, os.path.join(public_dir, "assets"), dirs_exist_ok=True)
     print("Successfully built standalone dashboard.html and index.html with Cricketer Face Cards!")
 
 if __name__ == "__main__":
