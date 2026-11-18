@@ -267,6 +267,34 @@ def create_dashboard_html():
             display: block;
         }}
 
+        .nav-btn.method-nav {{
+            color: #FFE566;
+            border: 1px solid rgba(255, 215, 0, 0.42);
+            font-weight: 900;
+        }}
+
+        .method-callout {{
+            margin: 0 0 1.45rem;
+            padding: 1.2rem 1.35rem;
+            border: 2px solid rgba(255, 215, 0, 0.75);
+            border-radius: 16px;
+            background: linear-gradient(115deg, rgba(228, 28, 106, 0.2), rgba(255, 215, 0, 0.12) 56%, rgba(0, 229, 255, 0.08));
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }}
+        .method-callout strong {{ display:block; color:#FFE566; font-size:1.15rem; font-weight:900; letter-spacing:.045em; }}
+        .method-callout p {{ color:#F8FAFC; margin:.35rem 0 .7rem; line-height:1.55; }}
+        .method-callout button {{ border:1px solid rgba(255,255,255,.3); border-radius:9px; background:#E41C6A; color:#fff; padding:.55rem .85rem; font-weight:800; cursor:pointer; }}
+        .methodology-hero {{ padding:1.5rem; margin-bottom:1.4rem; border:1px solid rgba(255,215,0,.45); border-radius:18px; background:linear-gradient(135deg,rgba(7,34,79,.96),rgba(20,14,47,.96)); }}
+        .methodology-hero h2 {{ color:#FFE566; font-size:clamp(1.55rem,3vw,2.45rem); line-height:1.1; font-weight:900; text-transform:uppercase; letter-spacing:.02em; margin-bottom:.55rem; }}
+        .methodology-hero p {{ color:#E2E8F0; font-size:1rem; line-height:1.6; max-width:1000px; }}
+        .methodology-steps {{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }}
+        .methodology-step {{ padding:1.15rem; border-radius:14px; background:rgba(7,34,79,.78); border:1px solid rgba(255,255,255,.12); }}
+        .methodology-step h3 {{ color:#FF75A9; font-size:1.02rem; font-weight:900; margin-bottom:.45rem; }}
+        .methodology-step p {{ color:#CBD5E1; font-size:.91rem; line-height:1.55; }}
+        .methodology-proof {{ margin-top:1rem; padding:1.2rem; border-radius:14px; background:rgba(0,0,0,.28); border-left:5px solid #00E5FF; color:#E2E8F0; line-height:1.65; }}
+        .methodology-proof strong {{ color:#FFE566; }}
+        @media (max-width: 850px) {{ .methodology-steps {{ grid-template-columns:1fr; }} }}
+
         @keyframes fadeIn {{
             from {{ opacity: 0; transform: translateY(6px); }}
             to {{ opacity: 1; transform: translateY(0); }}
@@ -937,6 +965,7 @@ def create_dashboard_html():
         </div>
         <div class="nav-tabs">
             <button class="nav-btn active" onclick="switchTab('leaderboard')">🏆 Cricketer Cards</button>
+            <button class="nav-btn method-nav" onclick="switchTab('methodology')">📘 METHODOLOGY</button>
             <button class="nav-btn" onclick="switchTab('explorer')">🔍 Full Scout DB</button>
             <button class="nav-btn" onclick="switchTab('h2h')">⚔️ Head-to-Head</button>
             <button class="nav-btn" onclick="switchTab('simulator')">⚡ Match Sandbox</button>
@@ -983,6 +1012,11 @@ def create_dashboard_html():
 
         <!-- TAB 1: OFFICIAL TOP 10 CRICKETER CARDS -->
         <section id="tab-leaderboard" class="tab-section active">
+            <div class="method-callout">
+                <strong>HOW WE SELECT PRESSURE PERFORMERS</strong>
+                <p>We define pressure from the match state and expected next-ball win-probability swing, then compare each player’s runs and wickets with an average player in the same cricket situation. Small samples are shrunk toward the overall average and the rankings are checked for stability.</p>
+                <button onclick="switchTab('methodology')">Read the full cricketing methodology →</button>
+            </div>
             <div class="section-header">
                 <div class="section-title">
                     <h3>Official Top 10 Cricketer Face Cards</h3>
@@ -1042,6 +1076,23 @@ def create_dashboard_html():
                     <strong style="color:#FCD34D">Trades:</strong> <span id="rr-moved-list"></span>
                 </div>
             </div>
+        </section>
+
+        <!-- TAB: CRICKETING METHODOLOGY -->
+        <section id="tab-methodology" class="tab-section">
+            <div class="methodology-hero">
+                <h2>Cricketing Methodology · How Pressure Players Are Selected</h2>
+                <p>This dashboard ranks observed pressure performance from supplied IPL and T20I ball-by-ball data (2022–2026). It measures match leverage, situation-adjusted batting and bowling value, and ranking stability. It is a transparent comparison method—not a claim that a player has a permanent “clutch gene.”</p>
+            </div>
+            <div class="methodology-steps">
+                <article class="methodology-step"><h3>1 · Rebuild each ball’s match state</h3><p>Record innings, score, wickets, legal balls remaining, target and required rate, over phase, venue scoring context and team strength. Use clean completed matches: 775 IPL and T20I matches, about 185,400 deliveries.</p></article>
+                <article class="methodology-step"><h3>2 · Estimate win probability</h3><p>Fit separate regularized logistic models for first innings and chases. Generate five-fold predictions split by match, so a match is held out when its win probability is estimated.</p></article>
+                <article class="methodology-step"><h3>3 · Define pressure with leverage</h3><p>For outcomes 0, 1, 2, 3, 4, 6 and wicket, calculate the absolute change from current win probability and weight by observed outcomes in a comparable innings, phase and wickets state. Normalize the average legal ball to LI = 1; the top 20% (about LI ≥ 1.25) are pressure balls. This can happen before the death overs.</p></article>
+                <article class="methodology-step"><h3>4 · Score cricket value in context</h3><p>Use a DLS-style expected-runs resource curve. Batting value includes runs off the bat and change in expected runs remaining. Bowling value rewards runs saved and bowler-credited wickets. Center each ball against the average in its pool × innings × phase × wickets × leverage-decile situation.</p></article>
+                <article class="methodology-step"><h3>5 · Build the player rating</h3><p>Measure usual value <b>g</b>, pressure effect <b>δ</b> (pressure minus ordinary), and level under pressure <b>g + δ</b>, all in runs per 100 balls above the situation average. Add a modest consistency term based on the share of pressure matches with positive net value.</p></article>
+                <article class="methodology-step"><h3>6 · Shrink and check before ranking</h3><p>Require at least 90 pressure balls, 150 ordinary balls and 10 matches with 3+ pressure balls. Match-clustered standard errors feed empirical-Bayes shrinkage: uncertain small samples move more toward the population mean. Check top-10 stability across 40 resamples of 80% of matches and 11 scoring or eligibility variants.</p></article>
+            </div>
+            <div class="methodology-proof"><strong>What the evidence says:</strong> the top 20% leverage balls contain about 43% of observed win-probability swing. In fully nested held-out pressure-value comparisons, rank correlations were 0.119 for batters and 0.207 for bowlers; usual-level-only did as well or better for batters (0.160). Pressure-specific skill is faint in this sample, so ranks and tiers describe past evidence and stability—not certainty about the next match. “Confirmed” means top-10 in ≥85% of resamples and ≥75% of variants; “Probable” means ≥50% on at least one of those checks.</div>
         </section>
 
         <!-- TAB 2: FULL PLAYER SCOUT DATABASE -->
@@ -1387,7 +1438,7 @@ def create_dashboard_html():
             
             document.getElementById("tab-" + tabId).classList.add("active");
             const btns = document.querySelectorAll(".nav-btn");
-            const tabOrder = ["leaderboard", "explorer", "h2h", "simulator", "audit", "auction"];
+            const tabOrder = ["leaderboard", "methodology", "explorer", "h2h", "simulator", "audit", "auction"];
             const idx = tabOrder.indexOf(tabId);
             if (idx >= 0 && btns[idx]) btns[idx].classList.add("active");
 
@@ -1410,7 +1461,7 @@ def create_dashboard_html():
                 .concat((APP_DATA.rr_trade_in_players || []).map(p => ({{ ...p, badge: "TRADED IN" }})));
             grid.innerHTML = players.map((p, i) => `
                 <article style="min-width:0;padding:.75rem;background:rgba(0,15,38,.55);border:1px solid rgba(255,255,255,.09);border-radius:12px;text-align:center">
-                    <img src="${{p.img}}" alt="${{p.name}}" loading="lazy" style="width:100%;height:126px;object-fit:contain;object-position:center bottom;border-radius:8px;background:radial-gradient(circle at 50% 35%,rgba(228,28,106,.22),transparent 70%)" onerror="this.onerror=null;this.src=getSvgAvatar('${{p.name}}','RR','')">
+                    <img src="${{p.img}}" alt="${{p.name}}" loading="lazy" style="width:100%;height:126px;object-fit:contain;object-position:center bottom;border-radius:8px;background:radial-gradient(circle at 50% 35%,rgba(228,28,106,.22),transparent 70%)" data-name="${{p.name}}" data-team="RR" data-jersey="00" onerror="handleImgError(this)">
                     <div style="font-weight:800;font-size:.85rem;margin-top:.55rem">${{p.name}}</div>
                     <div style="font-size:.67rem;color:${{p.badge === 'TRADED IN' ? '#FCD34D' : '#94A3B8'}};margin-top:.2rem">${{p.badge}}</div>
                 </article>`).join("");
@@ -1440,10 +1491,50 @@ def create_dashboard_html():
                 </tr>`).join("");
         }}
 
-        // Generate SVG Avatar fallback
+        // Handle image loading error cleanly with backup and premium SVG fallback
+        function handleImgError(img) {{
+            const backup = img.getAttribute("data-backup");
+            if (backup && img.src !== backup && !img.dataset.triedBackup) {{
+                img.dataset.triedBackup = "1";
+                img.src = backup;
+                return;
+            }}
+            img.onerror = null;
+            const name = img.getAttribute("data-name") || "Player";
+            const team = img.getAttribute("data-team") || "RR";
+            const jersey = img.getAttribute("data-jersey") || "00";
+            img.src = getSvgAvatar(name, team, jersey);
+        }}
+
+        // Generate high-tech athlete silhouette SVG avatar
         function getSvgAvatar(name, team, jersey) {{
-            const initials = name.split(" ").map(n => n[0]).join("").slice(0, 2);
-            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#E41C6A"/><stop offset="100%" stop-color="#07224F"/></linearGradient></defs><rect width="200" height="200" rx="20" fill="url(#g)"/><circle cx="100" cy="80" r="45" fill="#FFFFFF" opacity="0.15"/><text x="100" y="95" font-family="sans-serif" font-weight="900" font-size="44" fill="#FFFFFF" text-anchor="middle">${{initials}}</text><rect x="40" y="145" width="120" height="30" rx="8" fill="#000000" opacity="0.4"/><text x="100" y="165" font-family="sans-serif" font-weight="800" font-size="14" fill="#FFD700" text-anchor="middle">${{team}} #${{jersey}}</text></svg>`;
+            const initials = name.split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase();
+            const colors = {{
+                "RR": ["#E41C6A", "#000F26", "#FFD700"],
+                "MI": ["#004BA0", "#001E4D", "#D1AB3E"],
+                "SRH": ["#F26522", "#111111", "#FFA200"],
+                "KKR": ["#3A225D", "#000000", "#D3A935"],
+                "DC": ["#004C97", "#001D38", "#EF1B23"],
+                "GT": ["#1B2133", "#0B111F", "#BC9F62"],
+                "CSK": ["#F9CD05", "#004BA0", "#FFFFFF"]
+            }};
+            const c = colors[team] || ["#E41C6A", "#07224F", "#00F0FF"];
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+                <defs>
+                    <linearGradient id="bg_${{initials}}" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="${{c[0]}}" stop-opacity="0.9"/>
+                        <stop offset="100%" stop-color="${{c[1]}}" stop-opacity="0.98"/>
+                    </linearGradient>
+                </defs>
+                <rect width="300" height="300" fill="url(#bg_${{initials}})"/>
+                <circle cx="150" cy="115" r="48" fill="#FFFFFF" fill-opacity="0.18"/>
+                <path d="M70,270 C70,185 105,165 150,165 C195,165 230,185 230,270 Z" fill="#FFFFFF" fill-opacity="0.22"/>
+                <polygon points="135,165 150,190 165,165" fill="${{c[2]}}"/>
+                <circle cx="150" cy="115" r="40" fill="${{c[0]}}" fill-opacity="0.45"/>
+                <text x="150" y="128" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="34" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">${{initials}}</text>
+                <rect x="65" y="225" width="170" height="34" rx="17" fill="rgba(0,0,0,0.65)" stroke="${{c[2]}}" stroke-width="1.5"/>
+                <text x="150" y="248" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="14" fill="${{c[2]}}" text-anchor="middle" letter-spacing="1">${{team}} #${{jersey}}</text>
+            </svg>`;
             return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
         }}
 
@@ -1461,8 +1552,7 @@ def create_dashboard_html():
                 const scoreFmt = p.score.toFixed(2);
                 const levelFmt = (p.level >= 0 ? "+" : "") + p.level.toFixed(2);
                 const hitRatePct = Math.round((p.hit / p.hit_n) * 100);
-                const fallbackSvg = getSvgAvatar(p.name, p.team || "T20", p.jersey || "00");
-
+                
                 // Cricketer Face Card
                 const card = document.createElement("div");
                 card.className = `cricketer-card ${{rankClass}}`;
@@ -1482,7 +1572,11 @@ def create_dashboard_html():
                         <img class="player-headshot-img" 
                              src="${{p.img}}" 
                              alt="${{p.name}}"
-                             onerror="if(this.src!=='${{p.backup_img}}'){{this.src='${{p.backup_img}}';}}else{{this.src='${{fallbackSvg}}';}}">
+                             data-backup="${{p.backup_img || ''}}"
+                             data-name="${{p.name}}"
+                             data-team="${{p.team || 'T20'}}"
+                             data-jersey="${{p.jersey || '0'}}"
+                             onerror="handleImgError(this)">
                     </div>
                     <div class="card-content">
                         <div class="player-name-title-row">
@@ -1554,13 +1648,16 @@ def create_dashboard_html():
             const p = list.find(x => x.name === name) || list[0];
             const modal = document.getElementById("player-modal");
             const content = document.getElementById("modal-content");
-            const fallbackSvg = getSvgAvatar(p.name, p.team || "T20", p.jersey || "00");
-
+            
             content.innerHTML = `
                 <div style="display: flex; gap: 1.5rem; align-items: center; margin-bottom: 1.5rem;">
                     <img src="${{p.img}}" 
                          alt="${{p.name}}"
-                         onerror="this.src='${{fallbackSvg}}';"
+                         data-backup="${{p.backup_img || ''}}"
+                         data-name="${{p.name}}"
+                         data-team="${{p.team || 'T20'}}"
+                         data-jersey="${{p.jersey || '0'}}"
+                         onerror="handleImgError(this)"
                          style="width: 110px; height: 110px; border-radius: 16px; object-fit: contain; background: rgba(0,0,0,0.3); border: 2px solid var(--rr-pink);">
                     <div>
                         <div style="font-size: 0.75rem; font-weight: 800; color: var(--rr-gold); letter-spacing: 0.5px;">${{p.title || "PLAYER PROFILE"}}</div>
@@ -1740,14 +1837,17 @@ def create_dashboard_html():
             const chaseVal = p.chase_level !== null ? `+${{p.chase_level}}` : "N/A";
             const koVal = p.ko_diff !== null ? `${{p.ko_diff >= 0 ? "+" : ""}}${{p.ko_diff}}` : "N/A";
             const lsVal = p.longshot_level !== null ? `+${{p.longshot_level}}` : "N/A";
-            const fallbackSvg = getSvgAvatar(p.name, p.team || "T20", p.jersey || "00");
-
+            
             document.getElementById(elId).innerHTML = `
                 <div style="background: rgba(0,0,0,0.3); border-radius: 14px; padding: 1.2rem; border-top: 3px solid ${{accentColor}};">
                     <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
                         <img src="${{p.img}}" 
                              alt="${{p.name}}"
-                             onerror="this.src='${{fallbackSvg}}';"
+                             data-backup="${{p.backup_img || ''}}"
+                             data-name="${{p.name}}"
+                             data-team="${{p.team || 'T20'}}"
+                             data-jersey="${{p.jersey || '0'}}"
+                             onerror="handleImgError(this)"
                              style="width: 70px; height: 70px; border-radius: 12px; object-fit: contain; background: rgba(0,0,0,0.4); border: 1px solid ${{accentColor}};">
                         <div>
                             <div style="font-size: 1.4rem; font-weight: 900; color: #FFF;">${{p.score.toFixed(2)}}</div>

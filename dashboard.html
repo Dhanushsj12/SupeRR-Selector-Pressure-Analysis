@@ -257,6 +257,31 @@
             display: block;
         }
 
+        .nav-btn.method-nav {
+            color: #FFE566;
+            border: 1px solid rgba(255, 215, 0, 0.42);
+            font-weight: 900;
+        }
+        .method-callout {
+            margin: 0 0 1.45rem; padding: 1.2rem 1.35rem;
+            border: 2px solid rgba(255, 215, 0, 0.75); border-radius: 16px;
+            background: linear-gradient(115deg, rgba(228, 28, 106, 0.2), rgba(255, 215, 0, 0.12) 56%, rgba(0, 229, 255, 0.08));
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+        .method-callout strong { display:block; color:#FFE566; font-size:1.15rem; font-weight:900; letter-spacing:.045em; }
+        .method-callout p { color:#F8FAFC; margin:.35rem 0 .7rem; line-height:1.55; }
+        .method-callout button { border:1px solid rgba(255,255,255,.3); border-radius:9px; background:#E41C6A; color:#fff; padding:.55rem .85rem; font-weight:800; cursor:pointer; }
+        .methodology-hero { padding:1.5rem; margin-bottom:1.4rem; border:1px solid rgba(255,215,0,.45); border-radius:18px; background:linear-gradient(135deg,rgba(7,34,79,.96),rgba(20,14,47,.96)); }
+        .methodology-hero h2 { color:#FFE566; font-size:clamp(1.55rem,3vw,2.45rem); line-height:1.1; font-weight:900; text-transform:uppercase; letter-spacing:.02em; margin-bottom:.55rem; }
+        .methodology-hero p { color:#E2E8F0; font-size:1rem; line-height:1.6; max-width:1000px; }
+        .methodology-steps { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
+        .methodology-step { padding:1.15rem; border-radius:14px; background:rgba(7,34,79,.78); border:1px solid rgba(255,255,255,.12); }
+        .methodology-step h3 { color:#FF75A9; font-size:1.02rem; font-weight:900; margin-bottom:.45rem; }
+        .methodology-step p { color:#CBD5E1; font-size:.91rem; line-height:1.55; }
+        .methodology-proof { margin-top:1rem; padding:1.2rem; border-radius:14px; background:rgba(0,0,0,.28); border-left:5px solid #00E5FF; color:#E2E8F0; line-height:1.65; }
+        .methodology-proof strong { color:#FFE566; }
+        @media (max-width: 850px) { .methodology-steps { grid-template-columns:1fr; } }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
@@ -927,6 +952,7 @@
         </div>
         <div class="nav-tabs">
             <button class="nav-btn active" onclick="switchTab('leaderboard')">🏆 Cricketer Cards</button>
+            <button class="nav-btn method-nav" onclick="switchTab('methodology')">📘 METHODOLOGY</button>
             <button class="nav-btn" onclick="switchTab('explorer')">🔍 Full Scout DB</button>
             <button class="nav-btn" onclick="switchTab('h2h')">⚔️ Head-to-Head</button>
             <button class="nav-btn" onclick="switchTab('simulator')">⚡ Match Sandbox</button>
@@ -973,6 +999,12 @@
 
         <!-- TAB 1: OFFICIAL TOP 10 CRICKETER CARDS -->
         <section id="tab-leaderboard" class="tab-section active">
+
+            <div class="method-callout">
+                <strong>HOW WE SELECT PRESSURE PERFORMERS</strong>
+                <p>We define pressure from the match state and expected next-ball win-probability swing, then compare each player’s runs and wickets with an average player in the same cricket situation. Small samples are shrunk toward the overall average and rankings are checked for stability.</p>
+                <button onclick="switchTab('methodology')">Read the full cricketing methodology →</button>
+            </div>
             <div class="section-header">
                 <div class="section-title">
                     <h3>Official Top 10 Cricketer Face Cards</h3>
@@ -1032,6 +1064,24 @@
                     <strong style="color:#FCD34D">Trades:</strong> <span id="rr-moved-list"></span>
                 </div>
             </div>
+        </section>
+
+
+        <!-- TAB: CRICKETING METHODOLOGY -->
+        <section id="tab-methodology" class="tab-section">
+            <div class="methodology-hero">
+                <h2>Cricketing Methodology · How Pressure Players Are Selected</h2>
+                <p>This dashboard ranks observed pressure performance from supplied IPL and T20I ball-by-ball data (2022–2026). It measures match leverage, situation-adjusted batting and bowling value, and ranking stability. It is a transparent comparison method, not a claim that a player has a permanent “clutch gene.”</p>
+            </div>
+            <div class="methodology-steps">
+                <article class="methodology-step"><h3>1 · Rebuild each ball’s match state</h3><p>Record innings, score, wickets, legal balls remaining, target and required rate, over phase, venue scoring context and team strength. Use clean completed matches: 775 IPL and T20I matches, about 185,400 deliveries.</p></article>
+                <article class="methodology-step"><h3>2 · Estimate win probability</h3><p>Fit separate regularized logistic models for first innings and chases. Generate five-fold predictions split by match, so a match is held out when its win probability is estimated.</p></article>
+                <article class="methodology-step"><h3>3 · Define pressure with leverage</h3><p>For outcomes 0, 1, 2, 3, 4, 6 and wicket, calculate the absolute change from current win probability and weight by observed outcomes in a comparable innings, phase and wickets state. Normalize the average legal ball to LI = 1; the top 20% (about LI ≥ 1.25) are pressure balls. This can happen before the death overs.</p></article>
+                <article class="methodology-step"><h3>4 · Score cricket value in context</h3><p>Use a DLS-style expected-runs resource curve. Batting value includes runs off the bat and change in expected runs remaining. Bowling value rewards runs saved and bowler-credited wickets. Center each ball against the average in its pool × innings × phase × wickets × leverage-decile situation.</p></article>
+                <article class="methodology-step"><h3>5 · Build the player rating</h3><p>Measure usual value <b>g</b>, pressure effect <b>δ</b> (pressure minus ordinary), and level under pressure <b>g + δ</b>, all in runs per 100 balls above the situation average. Add a modest consistency term based on the share of pressure matches with positive net value.</p></article>
+                <article class="methodology-step"><h3>6 · Shrink and check before ranking</h3><p>Require at least 90 pressure balls, 150 ordinary balls and 10 matches with 3+ pressure balls. Match-clustered standard errors feed empirical-Bayes shrinkage: uncertain small samples move more toward the population mean. Check top-10 stability across 40 resamples of 80% of matches and 11 scoring or eligibility variants.</p></article>
+            </div>
+            <div class="methodology-proof"><strong>What the evidence says:</strong> the top 20% leverage balls contain about 43% of observed win-probability swing. In fully nested held-out pressure-value comparisons, rank correlations were 0.119 for batters and 0.207 for bowlers; usual-level-only did as well or better for batters (0.160). Pressure-specific skill is faint in this sample, so ranks and tiers describe past evidence and stability, not certainty about the next match. “Confirmed” means top-10 in ≥85% of resamples and ≥75% of variants; “Probable” means ≥50% on at least one check.</div>
         </section>
 
         <!-- TAB 2: FULL PLAYER SCOUT DATABASE -->
@@ -1417,7 +1467,7 @@
       "rating": 98,
       "title": "360\u00b0 MR. CLUTCH",
       "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/174.png",
-      "backup_img": "https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/388900/388941.1.png"
+      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/446507.png"
     },
     {
       "pid": 6281,
@@ -1455,8 +1505,8 @@
       "jersey": "4",
       "rating": 97,
       "title": "FEARLESS POWER STRIKER",
-      "img": "/assets/players/abhishek-sharma.jpg",
-      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/1070183.png"
+      "img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/1102213.png",
+      "backup_img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/212.png"
     },
     {
       "pid": 5553,
@@ -1488,13 +1538,13 @@
       "ko_diff": null,
       "longshot_level": 37.76,
       "short_name": "SALT",
-      "team": "RCB",
+      "team": "KKR",
       "country": "England",
       "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
       "jersey": "28",
       "rating": 95,
       "title": "HIGH-LEVERAGE BLITZER",
-      "img": "https://img1.hscicdn.com/image/upload/f_auto%2Ct_ds_square_w_640%2Cq_50/lsci/db/PICTURES/CMS/383100/383141.png",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/2_02_Phil_Salt.jpg/500px-2_02_Phil_Salt.jpg",
       "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/643907.png"
     },
     {
@@ -1527,14 +1577,14 @@
       "ko_diff": null,
       "longshot_level": 32.39,
       "short_name": "DAVID",
-      "team": "RCB",
+      "team": "MI",
       "country": "Australia",
       "flag": "\ud83c\udde6\ud83c\uddfa",
       "jersey": "8",
       "rating": 94,
       "title": "DEATH-OVER FINISHER",
-      "img": "https://static-files.cricket-australia.pulselive.com/headshots/440/3619-camedia.png",
-      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/892749.png"
+      "img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/892749.png",
+      "backup_img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/4524.png"
     },
     {
       "pid": 4260,
@@ -1611,8 +1661,8 @@
       "jersey": "13",
       "rating": 93,
       "title": "14-YR PHENOM DISRUPTOR",
-      "img": "https://documents.iplt20.com/ipl/IPLHeadshot2026/3498.png",
-      "backup_img": "https://static.toiimg.com/photo/120728679.cms"
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Vaibhav_Suryavanshi_meets_PM_Modi.jpg/500px-Vaibhav_Suryavanshi_meets_PM_Modi.jpg",
+      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/1410756.png"
     },
     {
       "pid": 818,
@@ -1644,14 +1694,14 @@
       "ko_diff": null,
       "longshot_level": 32.47,
       "short_name": "MARSH",
-      "team": "LSG",
+      "team": "DC",
       "country": "Australia",
       "flag": "\ud83c\udde6\ud83c\uddfa",
       "jersey": "8",
       "rating": 92,
       "title": "PRESSURE POWER ANCHOR",
-      "img": "https://images.icc-cricket.com/image/upload/t_player-headshot-portrait-lg-webp/prd/assets/players/13203/10094.png",
-      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/272450.png"
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Mitchell_Marsh.jpg/500px-Mitchell_Marsh.jpg",
+      "backup_img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/40.png"
     },
     {
       "pid": 2367,
@@ -1690,7 +1740,7 @@
       "rating": 91,
       "title": "POWERPLAY ASSAILANT",
       "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/1020.png",
-      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/530011.png"
+      "backup_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Travis_Head_cropped.jpg/500px-Travis_Head_cropped.jpg"
     },
     {
       "pid": 7897,
@@ -1728,8 +1778,8 @@
       "jersey": "9",
       "rating": 90,
       "title": "CALCULATED RESCUE ENGINE",
-      "img": "/assets/players/tilak-varma.png",
-      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/1170265.png"
+      "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/993.png",
+      "backup_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Tilak_Varma_in_March_2026.png/500px-Tilak_Varma_in_March_2026.png"
     },
     {
       "pid": 768,
@@ -1767,7 +1817,7 @@
       "jersey": "17",
       "rating": 89,
       "title": "TARGET CHASE SPEARHEAD",
-      "img": "https://static-files.cricket-australia.pulselive.com/headshots/440/669-camedia.png",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/REEZA_HENDRICKS_%2815519916117%29.jpg/500px-REEZA_HENDRICKS_%2815519916117%29.jpg",
       "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/269280.png"
     }
   ],
@@ -1919,14 +1969,14 @@
       "ko_diff": null,
       "longshot_level": 16.28,
       "short_name": "KULDP",
-      "team": "LSG",
+      "team": "DC",
       "country": "India",
       "flag": "\ud83c\uddee\ud83c\uddf3",
       "jersey": "23",
       "rating": 94,
       "title": "CLUTCH DRIFT MAGICIAN",
-      "img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/559241.png",
-      "backup_img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/14.png"
+      "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/14.png",
+      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/559241.png"
     },
     {
       "pid": 2876,
@@ -2036,14 +2086,14 @@
       "ko_diff": -2.18,
       "longshot_level": 16.62,
       "short_name": "KRUNL",
-      "team": "RCB",
+      "team": "LSG",
       "country": "India",
       "flag": "\ud83c\uddee\ud83c\uddf3",
       "jersey": "24",
       "rating": 90,
       "title": "TACTICAL TIGHT-LINE SPECIALIST",
-      "img": "https://www.wisden.com/static-assets/images/players/63788.png?v=23.65",
-      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/471342.png"
+      "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/17.png",
+      "backup_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Krunal_Pandya_and_Hardik_Pandya_%28cropped%29.jpg/500px-Krunal_Pandya_and_Hardik_Pandya_%28cropped%29.jpg"
     },
     {
       "pid": 7920,
@@ -2081,7 +2131,7 @@
       "jersey": "12",
       "rating": 90,
       "title": "DEATH-OVER CHANGEUP ACE",
-      "img": "https://www.wisden.com/static-assets/images/players/70324.png?v=23.35",
+      "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/764.png",
       "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/825075.png"
     },
     {
@@ -2153,14 +2203,14 @@
       "ko_diff": -22.43,
       "longshot_level": 13.76,
       "short_name": "BHUVI",
-      "team": "RCB",
+      "team": "SRH",
       "country": "India",
       "flag": "\ud83c\uddee\ud83c\uddf3",
       "jersey": "15",
       "rating": 89,
       "title": "VETERAN SWING & DEATH EXEC",
-      "img": "https://www.iplt20.com/_next/image?q=75&url=%2Fapi%2Fteam-assets%3Fpathname%3Dplayer%252F8903%252F2138%252F12690.png%26brand%3Dipl&w=750",
-      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/326016.png"
+      "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/15.png",
+      "backup_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Bhuvneshwar_Kumar.jpg/500px-Bhuvneshwar_Kumar.jpg"
     }
   ],
   "all_batters": [
@@ -2201,7 +2251,7 @@
       "rating": 98,
       "title": "360\u00b0 MR. CLUTCH",
       "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/174.png",
-      "backup_img": "https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_320,q_50/lsci/db/PICTURES/CMS/388900/388941.1.png"
+      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/446507.png"
     },
     {
       "pid": 6281,
@@ -2239,8 +2289,8 @@
       "jersey": "4",
       "rating": 97,
       "title": "FEARLESS POWER STRIKER",
-      "img": "/assets/players/abhishek-sharma.jpg",
-      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/1070183.png"
+      "img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/1102213.png",
+      "backup_img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/212.png"
     },
     {
       "pid": 5553,
@@ -2272,13 +2322,13 @@
       "ko_diff": null,
       "longshot_level": 37.76,
       "short_name": "SALT",
-      "team": "RCB",
+      "team": "KKR",
       "country": "England",
       "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
       "jersey": "28",
       "rating": 95,
       "title": "HIGH-LEVERAGE BLITZER",
-      "img": "https://img1.hscicdn.com/image/upload/f_auto%2Ct_ds_square_w_640%2Cq_50/lsci/db/PICTURES/CMS/383100/383141.png",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/2_02_Phil_Salt.jpg/500px-2_02_Phil_Salt.jpg",
       "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/643907.png"
     },
     {
@@ -2311,14 +2361,14 @@
       "ko_diff": null,
       "longshot_level": 32.39,
       "short_name": "DAVID",
-      "team": "RCB",
+      "team": "MI",
       "country": "Australia",
       "flag": "\ud83c\udde6\ud83c\uddfa",
       "jersey": "8",
       "rating": 94,
       "title": "DEATH-OVER FINISHER",
-      "img": "https://static-files.cricket-australia.pulselive.com/headshots/440/3619-camedia.png",
-      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/892749.png"
+      "img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/892749.png",
+      "backup_img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/4524.png"
     },
     {
       "pid": 4260,
@@ -2395,8 +2445,8 @@
       "jersey": "13",
       "rating": 93,
       "title": "14-YR PHENOM DISRUPTOR",
-      "img": "https://documents.iplt20.com/ipl/IPLHeadshot2026/3498.png",
-      "backup_img": "https://static.toiimg.com/photo/120728679.cms"
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Vaibhav_Suryavanshi_meets_PM_Modi.jpg/500px-Vaibhav_Suryavanshi_meets_PM_Modi.jpg",
+      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/1410756.png"
     },
     {
       "pid": 818,
@@ -2428,14 +2478,14 @@
       "ko_diff": null,
       "longshot_level": 32.47,
       "short_name": "MARSH",
-      "team": "LSG",
+      "team": "DC",
       "country": "Australia",
       "flag": "\ud83c\udde6\ud83c\uddfa",
       "jersey": "8",
       "rating": 92,
       "title": "PRESSURE POWER ANCHOR",
-      "img": "https://images.icc-cricket.com/image/upload/t_player-headshot-portrait-lg-webp/prd/assets/players/13203/10094.png",
-      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/272450.png"
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Mitchell_Marsh.jpg/500px-Mitchell_Marsh.jpg",
+      "backup_img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/40.png"
     },
     {
       "pid": 2367,
@@ -2474,7 +2524,7 @@
       "rating": 91,
       "title": "POWERPLAY ASSAILANT",
       "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/1020.png",
-      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/530011.png"
+      "backup_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Travis_Head_cropped.jpg/500px-Travis_Head_cropped.jpg"
     },
     {
       "pid": 7897,
@@ -2512,8 +2562,8 @@
       "jersey": "9",
       "rating": 90,
       "title": "CALCULATED RESCUE ENGINE",
-      "img": "/assets/players/tilak-varma.png",
-      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/1170265.png"
+      "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/993.png",
+      "backup_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Tilak_Varma_in_March_2026.png/500px-Tilak_Varma_in_March_2026.png"
     },
     {
       "pid": 768,
@@ -2551,7 +2601,7 @@
       "jersey": "17",
       "rating": 89,
       "title": "TARGET CHASE SPEARHEAD",
-      "img": "https://static-files.cricket-australia.pulselive.com/headshots/440/669-camedia.png",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/REEZA_HENDRICKS_%2815519916117%29.jpg/500px-REEZA_HENDRICKS_%2815519916117%29.jpg",
       "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/269280.png"
     },
     {
@@ -5862,14 +5912,14 @@
       "ko_diff": null,
       "longshot_level": 16.28,
       "short_name": "KULDP",
-      "team": "LSG",
+      "team": "DC",
       "country": "India",
       "flag": "\ud83c\uddee\ud83c\uddf3",
       "jersey": "23",
       "rating": 94,
       "title": "CLUTCH DRIFT MAGICIAN",
-      "img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/559241.png",
-      "backup_img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/14.png"
+      "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/14.png",
+      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/559241.png"
     },
     {
       "pid": 2876,
@@ -5979,14 +6029,14 @@
       "ko_diff": -2.18,
       "longshot_level": 16.62,
       "short_name": "KRUNL",
-      "team": "RCB",
+      "team": "LSG",
       "country": "India",
       "flag": "\ud83c\uddee\ud83c\uddf3",
       "jersey": "24",
       "rating": 90,
       "title": "TACTICAL TIGHT-LINE SPECIALIST",
-      "img": "https://www.wisden.com/static-assets/images/players/63788.png?v=23.65",
-      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/471342.png"
+      "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/17.png",
+      "backup_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Krunal_Pandya_and_Hardik_Pandya_%28cropped%29.jpg/500px-Krunal_Pandya_and_Hardik_Pandya_%28cropped%29.jpg"
     },
     {
       "pid": 7920,
@@ -6024,7 +6074,7 @@
       "jersey": "12",
       "rating": 90,
       "title": "DEATH-OVER CHANGEUP ACE",
-      "img": "https://www.wisden.com/static-assets/images/players/70324.png?v=23.35",
+      "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/764.png",
       "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/825075.png"
     },
     {
@@ -6096,14 +6146,14 @@
       "ko_diff": -22.43,
       "longshot_level": 13.76,
       "short_name": "BHUVI",
-      "team": "RCB",
+      "team": "SRH",
       "country": "India",
       "flag": "\ud83c\uddee\ud83c\uddf3",
       "jersey": "15",
       "rating": 89,
       "title": "VETERAN SWING & DEATH EXEC",
-      "img": "https://www.iplt20.com/_next/image?q=75&url=%2Fapi%2Fteam-assets%3Fpathname%3Dplayer%252F8903%252F2138%252F12690.png%26brand%3Dipl&w=750",
-      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/326016.png"
+      "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/15.png",
+      "backup_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Bhuvneshwar_Kumar.jpg/500px-Bhuvneshwar_Kumar.jpg"
     },
     {
       "pid": 5979,
@@ -8637,8 +8687,8 @@
       "jersey": "4",
       "rating": 97,
       "title": "FEARLESS POWER STRIKER",
-      "img": "/assets/players/abhishek-sharma.jpg",
-      "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/1070183.png"
+      "img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/1102213.png",
+      "backup_img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/212.png"
     },
     {
       "pid": 58246,
@@ -10315,7 +10365,7 @@
             
             document.getElementById("tab-" + tabId).classList.add("active");
             const btns = document.querySelectorAll(".nav-btn");
-            const tabOrder = ["leaderboard", "explorer", "h2h", "simulator", "audit", "auction"];
+            const tabOrder = ["leaderboard", "methodology", "explorer", "h2h", "simulator", "audit", "auction"];
             const idx = tabOrder.indexOf(tabId);
             if (idx >= 0 && btns[idx]) btns[idx].classList.add("active");
 
@@ -10338,7 +10388,7 @@
                 .concat((APP_DATA.rr_trade_in_players || []).map(p => ({ ...p, badge: "TRADED IN" })));
             grid.innerHTML = players.map((p, i) => `
                 <article style="min-width:0;padding:.75rem;background:rgba(0,15,38,.55);border:1px solid rgba(255,255,255,.09);border-radius:12px;text-align:center">
-                    <img src="${p.img}" alt="${p.name}" loading="lazy" style="width:100%;height:126px;object-fit:contain;object-position:center bottom;border-radius:8px;background:radial-gradient(circle at 50% 35%,rgba(228,28,106,.22),transparent 70%)" onerror="this.onerror=null;this.src=getSvgAvatar('${p.name}','RR','')">
+                    <img src="${p.img}" alt="${p.name}" loading="lazy" style="width:100%;height:126px;object-fit:contain;object-position:center bottom;border-radius:8px;background:radial-gradient(circle at 50% 35%,rgba(228,28,106,.22),transparent 70%)" data-name="${p.name}" data-team="RR" data-jersey="00" onerror="handleImgError(this)">
                     <div style="font-weight:800;font-size:.85rem;margin-top:.55rem">${p.name}</div>
                     <div style="font-size:.67rem;color:${p.badge === 'TRADED IN' ? '#FCD34D' : '#94A3B8'};margin-top:.2rem">${p.badge}</div>
                 </article>`).join("");
@@ -10368,10 +10418,50 @@
                 </tr>`).join("");
         }
 
-        // Generate SVG Avatar fallback
+        // Handle image loading error cleanly with backup and premium SVG fallback
+        function handleImgError(img) {
+            const backup = img.getAttribute("data-backup");
+            if (backup && img.src !== backup && !img.dataset.triedBackup) {
+                img.dataset.triedBackup = "1";
+                img.src = backup;
+                return;
+            }
+            img.onerror = null;
+            const name = img.getAttribute("data-name") || "Player";
+            const team = img.getAttribute("data-team") || "RR";
+            const jersey = img.getAttribute("data-jersey") || "00";
+            img.src = getSvgAvatar(name, team, jersey);
+        }
+
+        // Generate high-tech athlete silhouette SVG avatar
         function getSvgAvatar(name, team, jersey) {
-            const initials = name.split(" ").map(n => n[0]).join("").slice(0, 2);
-            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#E41C6A"/><stop offset="100%" stop-color="#07224F"/></linearGradient></defs><rect width="200" height="200" rx="20" fill="url(#g)"/><circle cx="100" cy="80" r="45" fill="#FFFFFF" opacity="0.15"/><text x="100" y="95" font-family="sans-serif" font-weight="900" font-size="44" fill="#FFFFFF" text-anchor="middle">${initials}</text><rect x="40" y="145" width="120" height="30" rx="8" fill="#000000" opacity="0.4"/><text x="100" y="165" font-family="sans-serif" font-weight="800" font-size="14" fill="#FFD700" text-anchor="middle">${team} #${jersey}</text></svg>`;
+            const initials = name.split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase();
+            const colors = {
+                "RR": ["#E41C6A", "#000F26", "#FFD700"],
+                "MI": ["#004BA0", "#001E4D", "#D1AB3E"],
+                "SRH": ["#F26522", "#111111", "#FFA200"],
+                "KKR": ["#3A225D", "#000000", "#D3A935"],
+                "DC": ["#004C97", "#001D38", "#EF1B23"],
+                "GT": ["#1B2133", "#0B111F", "#BC9F62"],
+                "CSK": ["#F9CD05", "#004BA0", "#FFFFFF"]
+            };
+            const c = colors[team] || ["#E41C6A", "#07224F", "#00F0FF"];
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+                <defs>
+                    <linearGradient id="bg_${initials}" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="${c[0]}" stop-opacity="0.9"/>
+                        <stop offset="100%" stop-color="${c[1]}" stop-opacity="0.98"/>
+                    </linearGradient>
+                </defs>
+                <rect width="300" height="300" fill="url(#bg_${initials})"/>
+                <circle cx="150" cy="115" r="48" fill="#FFFFFF" fill-opacity="0.18"/>
+                <path d="M70,270 C70,185 105,165 150,165 C195,165 230,185 230,270 Z" fill="#FFFFFF" fill-opacity="0.22"/>
+                <polygon points="135,165 150,190 165,165" fill="${c[2]}"/>
+                <circle cx="150" cy="115" r="40" fill="${c[0]}" fill-opacity="0.45"/>
+                <text x="150" y="128" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="34" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">${initials}</text>
+                <rect x="65" y="225" width="170" height="34" rx="17" fill="rgba(0,0,0,0.65)" stroke="${c[2]}" stroke-width="1.5"/>
+                <text x="150" y="248" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="14" fill="${c[2]}" text-anchor="middle" letter-spacing="1">${team} #${jersey}</text>
+            </svg>`;
             return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
         }
 
@@ -10389,8 +10479,7 @@
                 const scoreFmt = p.score.toFixed(2);
                 const levelFmt = (p.level >= 0 ? "+" : "") + p.level.toFixed(2);
                 const hitRatePct = Math.round((p.hit / p.hit_n) * 100);
-                const fallbackSvg = getSvgAvatar(p.name, p.team || "T20", p.jersey || "00");
-
+                
                 // Cricketer Face Card
                 const card = document.createElement("div");
                 card.className = `cricketer-card ${rankClass}`;
@@ -10410,7 +10499,11 @@
                         <img class="player-headshot-img" 
                              src="${p.img}" 
                              alt="${p.name}"
-                             onerror="if(this.src!=='${p.backup_img}'){this.src='${p.backup_img}';}else{this.src='${fallbackSvg}';}">
+                             data-backup="${p.backup_img || ''}"
+                             data-name="${p.name}"
+                             data-team="${p.team || 'T20'}"
+                             data-jersey="${p.jersey || '0'}"
+                             onerror="handleImgError(this)">
                     </div>
                     <div class="card-content">
                         <div class="player-name-title-row">
@@ -10482,13 +10575,16 @@
             const p = list.find(x => x.name === name) || list[0];
             const modal = document.getElementById("player-modal");
             const content = document.getElementById("modal-content");
-            const fallbackSvg = getSvgAvatar(p.name, p.team || "T20", p.jersey || "00");
-
+            
             content.innerHTML = `
                 <div style="display: flex; gap: 1.5rem; align-items: center; margin-bottom: 1.5rem;">
                     <img src="${p.img}" 
                          alt="${p.name}"
-                         onerror="this.src='${fallbackSvg}';"
+                         data-backup="${p.backup_img || ''}"
+                         data-name="${p.name}"
+                         data-team="${p.team || 'T20'}"
+                         data-jersey="${p.jersey || '0'}"
+                         onerror="handleImgError(this)"
                          style="width: 110px; height: 110px; border-radius: 16px; object-fit: contain; background: rgba(0,0,0,0.3); border: 2px solid var(--rr-pink);">
                     <div>
                         <div style="font-size: 0.75rem; font-weight: 800; color: var(--rr-gold); letter-spacing: 0.5px;">${p.title || "PLAYER PROFILE"}</div>
@@ -10668,14 +10764,17 @@
             const chaseVal = p.chase_level !== null ? `+${p.chase_level}` : "N/A";
             const koVal = p.ko_diff !== null ? `${p.ko_diff >= 0 ? "+" : ""}${p.ko_diff}` : "N/A";
             const lsVal = p.longshot_level !== null ? `+${p.longshot_level}` : "N/A";
-            const fallbackSvg = getSvgAvatar(p.name, p.team || "T20", p.jersey || "00");
-
+            
             document.getElementById(elId).innerHTML = `
                 <div style="background: rgba(0,0,0,0.3); border-radius: 14px; padding: 1.2rem; border-top: 3px solid ${accentColor};">
                     <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
                         <img src="${p.img}" 
                              alt="${p.name}"
-                             onerror="this.src='${fallbackSvg}';"
+                             data-backup="${p.backup_img || ''}"
+                             data-name="${p.name}"
+                             data-team="${p.team || 'T20'}"
+                             data-jersey="${p.jersey || '0'}"
+                             onerror="handleImgError(this)"
                              style="width: 70px; height: 70px; border-radius: 12px; object-fit: contain; background: rgba(0,0,0,0.4); border: 1px solid ${accentColor};">
                         <div>
                             <div style="font-size: 1.4rem; font-weight: 900; color: #FFF;">${p.score.toFixed(2)}</div>
