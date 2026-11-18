@@ -41,7 +41,7 @@ PLAYER_PROFILE_META = {
     },
     "Tim David": {
         "short_name": "DAVID",
-        "team": "MI",
+        "team": "RCB",
         "country": "Australia",
         "flag": "🇦🇺",
         "jersey": "8",
@@ -54,7 +54,7 @@ PLAYER_PROFILE_META = {
         "short_name": "KLAAS",
         "team": "SRH",
         "country": "South Africa",
-        "flag": "🇿🇦",
+        "flag": "SA",
         "jersey": "45",
         "rating": 94,
         "title": "SPIN & PACE PUNISHER",
@@ -219,25 +219,25 @@ PLAYER_PROFILE_META = {
     },
     "Krunal Pandya": {
         "short_name": "KRUNL",
-        "team": "LSG",
+        "team": "RCB",
         "country": "India",
         "flag": "🇮🇳",
         "jersey": "24",
         "rating": 90,
         "title": "TACTICAL TIGHT-LINE SPECIALIST",
-        "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/17.png",
-        "backup_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Krunal_Pandya_and_Hardik_Pandya_%28cropped%29.jpg/500px-Krunal_Pandya_and_Hardik_Pandya_%28cropped%29.jpg"
+        "img": "https://documents.iplt20.com/ipl/IPLHeadshot2026/1701.png",
+        "backup_img": "https://www.royalchallengers.com/PRRCB01/public/2026-03/2%20%2815%29.png"
     },
     "Nathan Ellis": {
         "short_name": "ELLIS",
-        "team": "PBKS",
+        "team": "SRH",
         "country": "Australia",
         "flag": "🇦🇺",
         "jersey": "12",
         "rating": 90,
         "title": "DEATH-OVER CHANGEUP ACE",
-        "img": "https://documents.iplt20.com/ipl/IPLHeadshot2024/764.png",
-        "backup_img": "https://a.espncdn.com/combiner/i?img=/i/headshots/cricket/players/full/825075.png"
+        "img": "https://images.icc-cricket.com/image/upload/t_player-headshot-portrait-lg-webp/prd/assets/players/6122/70324.png",
+        "backup_img": "https://www.wisden.com/static-assets/images/players/70324.png?v=23.77"
     },
     "Mitchell Santner": {
         "short_name": "SANTN",
