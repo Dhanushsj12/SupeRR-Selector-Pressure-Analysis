@@ -20,6 +20,10 @@ def index():
             return f.read()
     return "<h1>Rajasthan Royals SupeRR Selector Dashboard</h1><p>Please run build_dashboard.py first.</p>"
 
+@app.route("/assets/<path:filename>")
+def player_assets(filename):
+    return send_from_directory(os.path.join(BASE_DIR, "assets"), filename)
+
 @app.route("/api/data", methods=["GET"])
 def get_all_data():
     data = load_data()
